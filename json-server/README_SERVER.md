@@ -1,0 +1,1 @@
+To run server and React app: npm run server

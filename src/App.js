@@ -4,7 +4,7 @@ import { useRef } from "react";
 
 const App = () => {
   const audienceData = useSelector((state) => state.audienceData);
-  const displayRange = useSelector((state) => state.displayRange);
+  const displayStartIndex = useSelector((state) => state.displayStartIndex);
   const dispatch = useDispatch();
   const audienceSearchTerm = useRef(null);
   const iDSearchStart = useRef(null);
@@ -49,27 +49,44 @@ const App = () => {
     dispatch(actions.adjustDisplayRange(val));
   };
 
+  const lastDisplayIndex = () => {
+    return [audienceData.length, displayStartIndex + 5].sort(
+      (a, b) => a - b
+    )[0];
+  };
+
+  const audienceDataDisplay = () => {
+    return audienceData.map((audience, index) => (
+      <p key={index}>{audience.name}</p>
+    ));
+  };
+
   return (
     <div className="container-outer">
       <h1>APP</h1>
       {audienceData.length === 0 ? (
-        <h2>No Data In</h2>
+        <h2>No Data Yet</h2>
       ) : (
-        audienceData.map((audience, index) => (
-          <p key={index}>{audience.name}</p>
-        ))
+        <div>
+          <div className="container-inner">{audienceDataDisplay()}</div>
+          <div className="container-inner">
+            {displayStartIndex > 0 ? (
+              <button onClick={() => handleAdjustDisplayRange(-1)}>Back</button>
+            ) : null}
+            <h2>
+              {`Showing results ${
+                displayStartIndex + 1
+              } - ${lastDisplayIndex()} of ${audienceData.length}`}{" "}
+            </h2>
+            {audienceData.length > displayStartIndex + 5 ? (
+              <button onClick={() => handleAdjustDisplayRange(1)}>
+                Forward
+              </button>
+            ) : null}
+          </div>
+        </div>
       )}
-      {displayRange.start > 0 ? (
-        <button onClick={() => handleAdjustDisplayRange(-1)}>Back</button>
-      ) : null}
-      <h2>
-        {`Showing results ${displayRange.start + 1} - ${
-          displayRange.end + 1
-        } of ${audienceData.length}`}{" "}
-      </h2>
-      {audienceData.length > displayRange.end ? (
-        <button onClick={() => handleAdjustDisplayRange(1)}>Forward</button>
-      ) : null}
+
       <form className="h-form">
         <input className="h-input" type="text" ref={audienceSearchTerm} />
         <button className="h-btn" onClick={handleFetchData}>

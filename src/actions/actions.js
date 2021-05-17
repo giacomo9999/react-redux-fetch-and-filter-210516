@@ -18,6 +18,7 @@ export const fetchData = (idObj) => {
       .then((res) => res.json())
       .then((json) => {
         const isItInThere = (bigStr, littleStr) => {
+          littleStr = littleStr.charAt(0).toUpperCase() + littleStr.slice(1);
           return (
             bigStr.split(",").filter((elem) => elem.includes(littleStr))
               .length !== 0

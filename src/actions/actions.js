@@ -1,5 +1,9 @@
 import * as actionTypes from "./actionTypes";
 
+export const adjustDisplayRange = (rangeAdj) => {
+  return { type: actionTypes.ADJUST_DISPLAY_RANGE, rangeAdj: rangeAdj };
+};
+
 export const fetchById = (idObj) => {
   console.log("fetchById...", idObj);
   let searchString = `http://localhost:8080/audiences?_start=${

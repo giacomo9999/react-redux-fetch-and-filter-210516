@@ -44,8 +44,9 @@ const App = () => {
     iDSearchEnd.current.value = "";
   };
 
-  const adjustDisplayRange = (val) => {
+  const handleAdjustDisplayRange = (val) => {
     console.log("adjustDisplayRange...", val);
+    dispatch(actions.adjustDisplayRange(val));
   };
 
   return (
@@ -59,7 +60,7 @@ const App = () => {
         ))
       )}
       {displayRange.start > 0 ? (
-        <button onClick={() => adjustDisplayRange(-1)}>Back</button>
+        <button onClick={() => handleAdjustDisplayRange(-1)}>Back</button>
       ) : null}
       <h2>
         {`Showing results ${displayRange.start + 1} - ${
@@ -67,7 +68,7 @@ const App = () => {
         } of ${audienceData.length}`}{" "}
       </h2>
       {audienceData.length > displayRange.end ? (
-        <button onClick={() => adjustDisplayRange(1)}>Forward</button>
+        <button onClick={() => handleAdjustDisplayRange(1)}>Forward</button>
       ) : null}
       <form className="h-form">
         <input className="h-input" type="text" ref={audienceSearchTerm} />

@@ -18,6 +18,22 @@ const appReducer = (state = initialState, action) => {
       };
     case actionTypes.DATA_FETCH_ERROR:
       return { ...state, error: action.msg };
+    case actionTypes.ADJUST_DISPLAY_RANGE:
+      const adjDisplayRange =
+        action.rangeAdj > 0
+          ? {
+              start: state.displayRange.start + 5,
+              end: state.displayRange.end + 5,
+            }
+          : {
+              start: state.displayRange.start - 5,
+              end: state.displayRange.end - 5,
+            };
+      if (adjDisplayRange.end > state.audienceData.length) {
+        adjDisplayRange.end = state.audienceData.length - 1;
+      }
+      console.log("reducer ranges: ", state.displayRange, adjDisplayRange);
+      return { ...state, displayRange: adjDisplayRange };
     default:
       return state;
   }

@@ -1,19 +1,10 @@
 import * as actionTypes from "./actionTypes";
 
-export const addAudience = (payload) => {
-  console.log("actions...", payload);
-  return {
-    type: actionTypes.ADD_AUDIENCE,
-    payload,
-  };
-};
-
-// http://localhost:8080/audiences/${idObj.audienceId}
-// http://localhost:8080/audiences?_start=3&_end=7
-
 export const fetchById = (idObj) => {
   console.log("fetchById...", idObj);
-  let searchString = `http://localhost:8080/audiences?_start=${idObj.start-1}&_end=${idObj.end}`;
+  let searchString = `http://localhost:8080/audiences?_start=${
+    idObj.start - 1
+  }&_end=${idObj.end}`;
   return (dispatch) => {
     return fetch(searchString)
       .then((res) => res.json())

@@ -4,6 +4,7 @@ import { useRef } from "react";
 
 const App = () => {
   const audienceData = useSelector((state) => state.audienceData);
+  const displayRange = useSelector((state) => state.displayRange);
   const dispatch = useDispatch();
   const audienceSearchTerm = useRef(null);
   const iDSearchStart = useRef(null);
@@ -43,10 +44,13 @@ const App = () => {
     iDSearchEnd.current.value = "";
   };
 
+  const adjustDisplayRange = (val) => {
+    console.log("adjustDisplayRange...", val);
+  };
+
   return (
     <div className="container-outer">
       <h1>APP</h1>
-
       {audienceData.length === 0 ? (
         <h2>No Data In</h2>
       ) : (
@@ -54,6 +58,17 @@ const App = () => {
           <p key={index}>{audience.name}</p>
         ))
       )}
+      {displayRange.start > 0 ? (
+        <button onClick={() => adjustDisplayRange(-1)}>Back</button>
+      ) : null}
+      <h2>
+        {`Showing results ${displayRange.start + 1} - ${
+          displayRange.end + 1
+        } of ${audienceData.length}`}{" "}
+      </h2>
+      {audienceData.length > displayRange.end ? (
+        <button onClick={() => adjustDisplayRange(1)}>Forward</button>
+      ) : null}
       <form className="h-form">
         <input className="h-input" type="text" ref={audienceSearchTerm} />
         <button className="h-btn" onClick={handleFetchData}>

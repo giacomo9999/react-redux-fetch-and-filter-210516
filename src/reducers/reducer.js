@@ -3,7 +3,7 @@ import * as actionTypes from "../actions/actionTypes";
 const initialState = { audienceData: [] };
 
 const appReducer = (state = initialState, action) => {
-  console.log("appReducer...", action.fetchedData);
+  console.log("appReducer...", action, action.fetchedData);
   switch (action.type) {
     case actionTypes.FETCH_DATA:
       return {

@@ -87,16 +87,16 @@ const App = () => {
         <div>
           <div className="container-inner">{audienceDataDisplay()}</div>
           <div className="container-inner">
-            {displayStartIndex > 0 ? (
-              <button onClick={() => handleAdjustDisplayRange(-1)}>
-                Show Previous
-              </button>
-            ) : null}
             <h2>
               {`Showing results ${
                 displayStartIndex + 1
               } - ${lastDisplayIndex()} of ${audienceData.length}`}{" "}
             </h2>
+            {displayStartIndex > 0 ? (
+              <button onClick={() => handleAdjustDisplayRange(-1)}>
+                Show Previous
+              </button>
+            ) : null}
             {audienceData.length > displayStartIndex + 5 ? (
               <button onClick={() => handleAdjustDisplayRange(1)}>
                 Show Next
@@ -111,7 +111,7 @@ const App = () => {
               {`Sort By ` +
                 (sortOrder === "Ascending" ? "Descending" : "Ascending")}
             </button>
-            <button onClick={handleDispatchTestAction}>TEST</button>
+            {/* <button onClick={handleDispatchTestAction}>TEST</button> */}
           </div>
         </div>
       )}

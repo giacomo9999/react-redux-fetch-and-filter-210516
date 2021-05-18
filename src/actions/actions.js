@@ -56,7 +56,6 @@ export const fetchData = (idObj) => {
         const filteredJSON = json.filter(
           (elem) => isItInThere(elem.name, idObj.searchTerm) === true
         );
-
         dispatch({ type: actionTypes.FETCH_DATA, fetchedData: filteredJSON });
       })
       .catch((err) => {

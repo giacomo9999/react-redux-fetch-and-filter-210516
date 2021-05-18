@@ -41,7 +41,9 @@ const Audience = (props) => {
             <b>{props.audData.name}</b>
           </h3>
         </div>
-        <button onClick={() => handleToggleShowDetails()}>Show Details</button>
+        <button onClick={() => handleToggleShowDetails()}>
+          {!showDetails ? "Show Details" : "Hide Details"}
+        </button>
       </div>
       {showDetails ? detailsBlock() : null}
     </div>

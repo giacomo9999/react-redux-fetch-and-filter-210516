@@ -19,7 +19,7 @@ const appReducer = (state = initialState, action) => {
       return { ...state, sortOrder: toggledSortOrder };
     case actionTypes.TOGGLE_SORT_PARAM:
       console.log("reducer....TOGGLE_SORT_PARAM");
-      const toggledSortParam = state.sortOrder === "ID" ? "Name" : "ID";
+      const toggledSortParam = state.sortParam === "ID" ? "Name" : "ID";
       return { ...state, sortParam: toggledSortParam };
     case actionTypes.FETCH_DATA:
       return {

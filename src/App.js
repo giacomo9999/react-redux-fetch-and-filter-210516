@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
-import * as actions from "./actions/actions";
 import { useRef } from "react";
+import * as actions from "./actions/actions";
+import AudienceComponent from "./components/AudienceComponent";
 
 const App = () => {
   const audienceData = useSelector((state) => state.audienceData);
@@ -61,11 +62,6 @@ const App = () => {
     dispatch(actions.toggleSortOrder());
   };
 
-  const handleDispatchTestAction = () => {
-    console.log("App...testAction");
-    dispatch(actions.testAction());
-  };
-
   const lastDisplayIndex = () => {
     return [audienceData.length, displayStartIndex + 5].sort(
       (a, b) => a - b
@@ -74,19 +70,20 @@ const App = () => {
 
   const audienceDataDisplay = () => {
     return audienceData.map((audience, index) => (
-      <p key={index}>{audience.name}</p>
+      // <p key={index}>{audience.name}</p>
+      <AudienceComponent key={index} audData={audience} />
     ));
   };
 
   return (
     <div className="container-outer">
-      <h1>APP</h1>
+      <h1>Audience App</h1>
       {audienceData.length === 0 ? (
-        <h2>No Data Yet</h2>
+        <h2>-No Data Requested Yet-</h2>
       ) : (
         <div>
-          <div className="container-inner">{audienceDataDisplay()}</div>
-          <div className="container-inner">
+          <div >{audienceDataDisplay()}</div>
+          <div className="container-inner info-block">
             <h2>
               {`Showing results ${
                 displayStartIndex + 1
@@ -111,7 +108,6 @@ const App = () => {
               {`Sort By ` +
                 (sortOrder === "Ascending" ? "Descending" : "Ascending")}
             </button>
-            {/* <button onClick={handleDispatchTestAction}>TEST</button> */}
           </div>
         </div>
       )}

@@ -9,9 +9,6 @@ const initialState = {
 
 const appReducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.TEST_ACTION:
-      console.log("reducer...test action received.");
-      return state;
     case actionTypes.TOGGLE_SORT_ORDER:
       console.log("reducer....TOGGLE_SORT_ORDER");
       const toggledSortOrder =

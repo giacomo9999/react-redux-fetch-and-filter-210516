@@ -68,7 +68,7 @@ p {
   /* color 11 */
   color: white;
   padding: 0;
-  margin: 5px;
+  margin: 0 5px;
 }
 
 .dark {
@@ -77,7 +77,7 @@ p {
 }
 
 .container-outer {
-  width: 50%;
+  width: 75%;
   padding: 10px;
   margin: 20px auto 10px;
   /* background color 5 */
@@ -92,6 +92,37 @@ p {
   background-color: #3c4a59;
   padding: 10px;
   border-radius: 5px;
+}
+
+.info-block {
+  background-color: #1c2a39;
+}
+
+.audience-body {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.audience-plus-button {
+  display: flex;
+  justify-content: space-between;
+}
+
+.audience-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.audience-detail-entry {
+  width: 100%;
+  background-color: #7c8a99;
+  margin: 5px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
 }
 
 /* Lists: */

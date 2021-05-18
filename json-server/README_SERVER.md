@@ -1,1 +1,1 @@
-To run server and React app: npm run server
+To run server and React app: npm start

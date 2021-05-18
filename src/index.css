@@ -143,9 +143,10 @@ td {
 /* Button (General Use) */
 
 button {
-  background-color: #6C7A89;
+  background-color: #6c7a89;
   color: white;
   padding: 1px 10px;
+  margin: 5px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -167,7 +168,7 @@ button {
 
 .h-form .h-label {
   display: block;
-  font-size: .8rem;
+  font-size: 0.8rem;
   padding: 4px;
   box-sizing: border-box;
   /* background color 8 */

@@ -5,6 +5,8 @@ import { useRef } from "react";
 const App = () => {
   const audienceData = useSelector((state) => state.audienceData);
   const displayStartIndex = useSelector((state) => state.displayStartIndex);
+  const sortParam = useSelector((state) => state.sortParam);
+  const sortOrder = useSelector((state) => state.sortOrder);
   const dispatch = useDispatch();
   const audienceSearchTerm = useRef(null);
   const iDSearchStart = useRef(null);
@@ -49,6 +51,21 @@ const App = () => {
     dispatch(actions.adjustDisplayRange(val));
   };
 
+  const handleToggleSortParam = () => {
+    console.log("Toggling sort param");
+    dispatch(actions.toggleSortParam());
+  };
+
+  const handleToggleSortOrder = () => {
+    console.log("Toggling sort order");
+    dispatch(actions.toggleSortOrder());
+  };
+
+  const handleDispatchTestAction = () => {
+    console.log("App...testAction");
+    dispatch(actions.testAction());
+  };
+
   const lastDisplayIndex = () => {
     return [audienceData.length, displayStartIndex + 5].sort(
       (a, b) => a - b
@@ -71,7 +88,9 @@ const App = () => {
           <div className="container-inner">{audienceDataDisplay()}</div>
           <div className="container-inner">
             {displayStartIndex > 0 ? (
-              <button onClick={() => handleAdjustDisplayRange(-1)}>Back</button>
+              <button onClick={() => handleAdjustDisplayRange(-1)}>
+                Show Previous
+              </button>
             ) : null}
             <h2>
               {`Showing results ${
@@ -80,9 +99,19 @@ const App = () => {
             </h2>
             {audienceData.length > displayStartIndex + 5 ? (
               <button onClick={() => handleAdjustDisplayRange(1)}>
-                Forward
+                Show Next
               </button>
             ) : null}
+
+            <h3>{`Sort Parameter: ${sortParam} • Sort Order: ${sortOrder}`}</h3>
+            <button onClick={handleToggleSortParam}>
+              {`Sort By ` + (sortParam === "ID" ? "Name" : "ID")}
+            </button>
+            <button onClick={handleToggleSortOrder}>
+              {`Sort By ` +
+                (sortOrder === "Ascending" ? "Descending" : "Ascending")}
+            </button>
+            <button onClick={handleDispatchTestAction}>TEST</button>
           </div>
         </div>
       )}

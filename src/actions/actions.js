@@ -1,7 +1,23 @@
 import * as actionTypes from "./actionTypes";
 
 export const adjustDisplayRange = (rangeAdj) => {
+  console.log("actions...Adjusting Display range");
   return { type: actionTypes.ADJUST_DISPLAY_RANGE, rangeAdj: rangeAdj };
+};
+
+export const toggleSortOrder = () => {
+  console.log("actions...Toggling sort order");
+  return { type: actionTypes.TOGGLE_SORT_ORDER };
+};
+
+export const toggleSortParam = () => {
+  console.log("actions...Toggling sort param");
+  return { type: actionTypes.TOGGLE_SORT_PARAM };
+};
+
+export const testAction = () => {
+  console.log("actions...testAction here");
+  return { type: actionTypes.TEST_ACTION };
 };
 
 export const fetchById = (idObj) => {

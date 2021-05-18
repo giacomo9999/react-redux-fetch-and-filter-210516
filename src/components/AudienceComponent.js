@@ -2,12 +2,12 @@ import { useDispatch, useSelector } from "react-redux";
 import * as actions from "../actions/actions";
 
 const Audience = (props) => {
-  const showDetails = useSelector((state) => state.audienceData[props.storeIndex].showDetails);
-  console.log("Props", props);
-  console.log("ShowDetails:", showDetails);
+  const showDetails = useSelector(
+    (state) => state.audienceData[props.storeIndex].showDetails
+  );
+
   const dispatch = useDispatch();
   const handleToggleShowDetails = () => {
-    console.group("handleToggleShowDetails...");
     dispatch(actions.toggleShowDetails(props.storeIndex));
   };
 

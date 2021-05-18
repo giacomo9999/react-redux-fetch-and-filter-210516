@@ -19,7 +19,6 @@ const App = () => {
       alert("Please enter a search term.");
       return null;
     }
-    console.log("handleAddAudience...", audienceSearchTerm.current.value);
     dispatch(
       actions.fetchData({ searchTerm: audienceSearchTerm.current.value })
     );
@@ -32,11 +31,7 @@ const App = () => {
       alert("ID values must be between 1 and 12");
       return null;
     }
-    console.log(
-      "handleFetchById...",
-      iDSearchStart.current.value,
-      iDSearchEnd.current.value
-    );
+
     dispatch(
       actions.fetchById({
         start: iDSearchStart.current.value,
@@ -48,17 +43,14 @@ const App = () => {
   };
 
   const handleAdjustDisplayRange = (val) => {
-    console.log("adjustDisplayRange...", val);
     dispatch(actions.adjustDisplayRange(val));
   };
 
   const handleToggleSortParam = () => {
-    console.log("Toggling sort param");
     dispatch(actions.toggleSortParam());
   };
 
   const handleToggleSortOrder = () => {
-    console.log("Toggling sort order");
     dispatch(actions.toggleSortOrder());
   };
 
@@ -107,7 +99,9 @@ const App = () => {
         <h2>-No Data Requested Yet-</h2>
       ) : (
         <div>
-          <div>{audienceDataDisplay()}</div>
+          <div>
+            {audienceDataDisplay().slice(displayStartIndex, lastDisplayIndex())}
+          </div>
           <div className="container-inner info-block">
             <h2>
               {`Showing results ${

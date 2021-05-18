@@ -1,27 +1,22 @@
 import * as actionTypes from "./actionTypes";
 
 export const adjustDisplayRange = (rangeAdj) => {
-  console.log("actions...Adjusting Display range");
   return { type: actionTypes.ADJUST_DISPLAY_RANGE, rangeAdj: rangeAdj };
 };
 
 export const toggleSortOrder = () => {
-  console.log("actions...Toggling sort order");
   return { type: actionTypes.TOGGLE_SORT_ORDER };
 };
 
 export const toggleSortParam = () => {
-  console.log("actions...Toggling sort param");
   return { type: actionTypes.TOGGLE_SORT_PARAM };
 };
 
 export const toggleShowDetails = (id) => {
-  console.log("toggleShowDetails...", id);
   return { type: actionTypes.TOGGLE_SHOW_DETAILS, id: id };
 };
 
 export const fetchById = (idObj) => {
-  console.log("fetchById...", idObj);
   let searchString = `http://localhost:8080/audiences?_start=${
     idObj.start - 1
   }&_end=${idObj.end}`;

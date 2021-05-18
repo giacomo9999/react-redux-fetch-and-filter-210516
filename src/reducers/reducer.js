@@ -10,17 +10,14 @@ const initialState = {
 const appReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.TOGGLE_SHOW_DETAILS:
-      console.log("reducer...toggling showDetails for ", action.id);
       const adjAudData = state.audienceData;
       adjAudData[action.id].showDetails = !adjAudData[action.id].showDetails;
       return { ...state, audienceData: adjAudData };
     case actionTypes.TOGGLE_SORT_ORDER:
-      console.log("reducer....TOGGLE_SORT_ORDER");
       const toggledSortOrder =
         state.sortOrder === "Ascending" ? "Descending" : "Ascending";
       return { ...state, sortOrder: toggledSortOrder };
     case actionTypes.TOGGLE_SORT_PARAM:
-      console.log("reducer....TOGGLE_SORT_PARAM");
       const toggledSortParam = state.sortParam === "ID" ? "Name" : "ID";
       return { ...state, sortParam: toggledSortParam };
     case actionTypes.FETCH_DATA:
@@ -35,7 +32,6 @@ const appReducer = (state = initialState, action) => {
     case actionTypes.DATA_FETCH_ERROR:
       return { ...state, error: action.msg };
     case actionTypes.ADJUST_DISPLAY_RANGE:
-      console.log("reducer....ADJUST DISPLAY RANGE");
       const adjDisplayStart =
         action.rangeAdj > 0
           ? state.displayStartIndex + 5

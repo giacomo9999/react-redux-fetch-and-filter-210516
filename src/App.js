@@ -70,8 +70,7 @@ const App = () => {
 
   const audienceDataDisplay = () => {
     return audienceData.map((audience, index) => (
-      // <p key={index}>{audience.name}</p>
-      <AudienceComponent key={index} audData={audience} />
+      <AudienceComponent key={index} storeIndex={index} audData={audience} />
     ));
   };
 
@@ -82,7 +81,7 @@ const App = () => {
         <h2>-No Data Requested Yet-</h2>
       ) : (
         <div>
-          <div >{audienceDataDisplay()}</div>
+          <div>{audienceDataDisplay()}</div>
           <div className="container-inner info-block">
             <h2>
               {`Showing results ${

@@ -9,6 +9,11 @@ const initialState = {
 
 const appReducer = (state = initialState, action) => {
   switch (action.type) {
+    case actionTypes.TOGGLE_SHOW_DETAILS:
+      console.log("reducer...toggling showDetails for ", action.id);
+      const adjAudData = state.audienceData;
+      adjAudData[action.id].showDetails = !adjAudData[action.id].showDetails;
+      return { ...state, audienceData: adjAudData };
     case actionTypes.TOGGLE_SORT_ORDER:
       console.log("reducer....TOGGLE_SORT_ORDER");
       const toggledSortOrder =
@@ -19,9 +24,12 @@ const appReducer = (state = initialState, action) => {
       const toggledSortParam = state.sortParam === "ID" ? "Name" : "ID";
       return { ...state, sortParam: toggledSortParam };
     case actionTypes.FETCH_DATA:
+      const adjFetchedData = action.fetchedData.map((entry) => {
+        return { ...entry, showDetails: false };
+      });
       return {
         ...state,
-        audienceData: action.fetchedData,
+        audienceData: adjFetchedData,
         displayStartIndex: 0,
       };
     case actionTypes.DATA_FETCH_ERROR:

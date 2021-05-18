@@ -15,6 +15,11 @@ export const toggleSortParam = () => {
   return { type: actionTypes.TOGGLE_SORT_PARAM };
 };
 
+export const toggleShowDetails = (id) => {
+  console.log("toggleShowDetails...", id);
+  return { type: actionTypes.TOGGLE_SHOW_DETAILS, id: id };
+};
+
 export const fetchById = (idObj) => {
   console.log("fetchById...", idObj);
   let searchString = `http://localhost:8080/audiences?_start=${

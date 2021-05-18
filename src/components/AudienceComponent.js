@@ -1,7 +1,16 @@
-import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import * as actions from "../actions/actions";
 
 const Audience = (props) => {
-  const [showDetails, toggleShowDetails] = useState(false);
+  const showDetails = useSelector((state) => state.audienceData[props.storeIndex].showDetails);
+  console.log("Props", props);
+  console.log("ShowDetails:", showDetails);
+  const dispatch = useDispatch();
+  const handleToggleShowDetails = () => {
+    console.group("handleToggleShowDetails...");
+    dispatch(actions.toggleShowDetails(props.storeIndex));
+  };
+
   const detailsBlock = () => {
     return (
       <div className="audience-details">
@@ -14,7 +23,6 @@ const Audience = (props) => {
             <p>{`Type: ${dimension.type}`}</p>
             <p>{`Size: ${dimension.size}`}</p>
             <p>{`Filters: ${dimension.filters}`}</p>
-            
           </div>
         ))}
       </div>
@@ -33,9 +41,7 @@ const Audience = (props) => {
             <b>{props.audData.name}</b>
           </h3>
         </div>
-        <button onClick={() => toggleShowDetails(!showDetails)}>
-          Show Details
-        </button>
+        <button onClick={() => handleToggleShowDetails()}>Show Details</button>
       </div>
       {showDetails ? detailsBlock() : null}
     </div>

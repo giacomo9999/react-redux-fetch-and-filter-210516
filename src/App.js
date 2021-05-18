@@ -69,9 +69,35 @@ const App = () => {
   };
 
   const audienceDataDisplay = () => {
-    return audienceData.map((audience, index) => (
+    const displayData = audienceData.map((audience, index) => (
       <AudienceComponent key={index} storeIndex={index} audData={audience} />
     ));
+    const alphaSort = (arrIn) => {
+      return arrIn.sort((a, b) => {
+        let fa = a.props.audData.name.toLowerCase(),
+          fb = b.props.audData.name.toLowerCase();
+
+        if (fa < fb) {
+          return -1;
+        }
+        if (fa > fb) {
+          return 1;
+        }
+        return 0;
+      });
+    };
+    if (sortParam === "ID" && sortOrder === "Ascending") {
+      return displayData;
+    }
+    if (sortParam === "ID" && sortOrder === "Descending") {
+      return displayData.reverse();
+    }
+    if (sortParam === "Name" && sortOrder === "Ascending") {
+      return alphaSort(displayData);
+    }
+    if (sortParam === "Name" && sortOrder === "Descending") {
+      return alphaSort(displayData).reverse();
+    }
   };
 
   return (
